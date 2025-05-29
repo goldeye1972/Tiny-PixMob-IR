@@ -1,3 +1,3 @@
 # TinyPixMobIR
-megatinycore用のPixMob_IRライブラリ\n
+megatinycore用のPixMob_IRライブラリ  
 作成中
