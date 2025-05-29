@@ -23,7 +23,7 @@ void TinyPixMobIR::begin() {
 }
 bool TinyPixMobIR::sendGRB(uint8_t g, uint8_t r, uint8_t b, uint8_t ata, uint8_t sus, uint8_t res) {
   if (~0x3F & (g | r | b)) return false; // 6bit超過チェック
-  uint8_t buff[8] = {}; // 初期化しておく
+  uint8_t buff[8] = {}; // 初期化
   uint8_t bytesize = 5;
   buff[1] = encode_table[0]; // 送信モード用固定値
   buff[2] = encode_table[g];
@@ -35,23 +35,21 @@ bool TinyPixMobIR::sendGRB(uint8_t g, uint8_t r, uint8_t b, uint8_t ata, uint8_t
     buff[6] = encode_table[(res << 3) | sus];
     buff[7] = encode_table[0]; 
   }
-  // チェックサム計算をsendBitsに移譲
   sendBits(buff, bytesize);
   return true;
 }
 bool TinyPixMobIR::sendMotion(uint8_t ata, uint8_t sus, uint8_t res) {
-  uint8_t buff[5] = {}; // 初期化しておく
+  uint8_t buff[5] = {}; // 初期化
   uint8_t bytesize = 5;
   buff[1] = encode_table[0b00100011]; // 送信モード用固定値
   buff[2] = encode_table[0b00110000];
   buff[3] = encode_table[0b00000111|(ata << 3)];
   buff[4] = encode_table[(res << 3) | sus];
-  // チェックサム計算をsendBitsに移譲
   sendBits(buff, bytesize);
   return true;
 }
 void TinyPixMobIR::sendBits(uint8_t *data, uint8_t leng) {
-  // sendBits内でチェックサム計算を実行
+  // チェックサム計算を実行
   uint8_t sum = 0;
   for (uint8_t i = 1; i < leng; i++) {
     sum += data[i];
