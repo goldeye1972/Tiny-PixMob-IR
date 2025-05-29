@@ -7,7 +7,7 @@ void setup() {
 }
 
 void loop() {
-  // 赤色を送信 - TIME定数がオレンジ色で表示される
+  // 赤色を送信 
   pixmob.sendGRB(0, 63, 0, TIME_32_MS, TIME_96_MS, TIME_192_MS);
   delay(1000);
   
