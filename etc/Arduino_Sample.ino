@@ -60,12 +60,6 @@ void loop() {
       lastBit = newBit; // Update last bit state
     }
   }
-  
-  // Add final bit sequence if exists
-  if(bitCount > 0) {
-    newRawData[RAW_LENGTH] = bitCount * 700;
-    RAW_LENGTH++;
-  }
     
   // Send RAW IR data at 38kHz carrier frequency
   IrSender.sendRaw(newRawData, RAW_LENGTH, 38);
