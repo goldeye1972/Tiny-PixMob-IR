@@ -36,7 +36,7 @@ void loop() {
   newCode[0] = encode_table[newCode[0]]; // Encode checksum as well
   
   // Define maximum size for RAW data array with buffer
-  const uint8_t MAX_RAW_LENGTH = sizeof(newCode) * 8 + 10;
+  uint8_t MAX_RAW_LENGTH = sizeof(newCode) * 8 + 10;
   uint16_t newRawData[MAX_RAW_LENGTH];
   uint8_t RAW_LENGTH = 0; // Actual length counter
   uint8_t lastBit = 1; // Start with HIGH state
